@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Header from "./Header.jsx";
+import './css/styles.css';
 
 export default class App extends Component {
   constructor() {
     super()
     this.state = {
-      
+      cards: [],
     }
   }
 
@@ -50,7 +51,7 @@ export default class App extends Component {
           </form>
         </section>
 
-        <section class="idea-section" />
+        <Idea-section />
       </wrapper>
     );
   }
