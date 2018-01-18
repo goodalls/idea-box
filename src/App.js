@@ -1,23 +1,60 @@
 import React, { Component } from "react";
 import Header from "./Header.jsx";
-import './css/styles.css';
+import "./css/styles.css";
+import IdeaSection from "./IdeaSection.jsx";
 
 export default class App extends Component {
   constructor() {
-    super()
-    this.state = {
-      cards: [],
-    }
+    super();
+    this.state = { cards: [] };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    let cardID = Date.now();
+    let cardTitle = document.querySelector("#title-input").value;
+    let cardBody = document.querySelector("#body-input").value;
+    let cardQuality = "Swill";
+    this.setState({
+      cards: [
+        ...this.state.cards,
+        {
+          id: cardID,
+          title: cardTitle,
+          body: cardBody,
+          quality: cardQuality
+        }
+      ]
+    });
+    this.storeIdea(cardID, cardTitle, cardBody, cardQuality);
+    // inputReset();
+  }
+
+  storeIdea(cardID, cardTitle, cardBody, cardQuality) {
+    let idea = {
+      id: cardID,
+      title: cardTitle,
+      body: cardBody,
+      quality: cardQuality
+    };
+    let stringifiedIdea = JSON.stringify(idea);
+    localStorage.setItem(cardID, stringifiedIdea);
+    // ideaArchive(id);
+  }
+
+  removeFromStorage(id) {
+    localStorage.removeItem(id);
   }
 
   render() {
     return (
-      <wrapper>
+      <div>
         <Header />
 
-        <section class="form">
+        <section className="form">
           <form>
-            <label for="title-input" />
+            <label htmlFor="title-input" />
             <input
               type="text"
               id="title-input"
@@ -25,7 +62,7 @@ export default class App extends Component {
               required="true"
               placeholder="Title"
             />
-            <label for="body-input" />
+            <label htmlFor="body-input" />
             <input
               type="text"
               id="body-input"
@@ -33,26 +70,18 @@ export default class App extends Component {
               required="true"
               placeholder="Body"
             />
-            <label for="save-button" />
+            <label htmlFor="save-button" />
             <input
               type="button"
               value="save"
               id="save-button"
-              disabled="true"
-            />
-            <label for="search-input" />
-            <input
-              type="text"
-              id="search-input"
-              name="search-input"
-              required="true"
-              placeholder="Search"
+              onClick={this.handleClick}
             />
           </form>
         </section>
 
-        <Idea-section />
-      </wrapper>
+        <IdeaSection cardArray={this.state.cards} />
+      </div>
     );
   }
 }
