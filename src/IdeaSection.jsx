@@ -13,7 +13,7 @@ export default props => {
           required="true"
           placeholder="Search"
         />
-        {props.cardArray.map(card => <Card info={card} key={card.id} />) }
+        {props.cardArray.map(card => <Card info={card} key={card.id} cardHandeler={props.cardHandeler} />) }
       </section>
     </div>
   );

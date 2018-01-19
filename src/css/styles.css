@@ -86,8 +86,8 @@ input::placeholder {
   font-weight: 700;
 }
 
-/* .delete-idea-button {
-  background-image: url("images/delete.svg");
+.delete-idea-button {
+  background-image: url("../images/delete.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -96,7 +96,7 @@ input::placeholder {
 }
 
 .delete-idea-button:hover {
-  background-image: url("images/delete-hover.svg");
+  background-image: url("../images/delete-hover.svg");
 }
 
 .idea-card p {
@@ -105,7 +105,7 @@ input::placeholder {
 }
 
 .up-vote-button {
-  background-image: url("images/upvote.svg");
+  background-image: url("../images/upvote.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -114,22 +114,22 @@ input::placeholder {
 }
 
 .up-vote-button:hover {
-  background-image: url("images/upvote-hover.svg");
+  background-image: url("../images/upvote-hover.svg");
 }
 
 .down-vote-button {
-  background-image: url("images/downvote.svg");
+  background-image: url("../images/downvote.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   height: 3em;
   margin-left: 1em;
   width: 3em;
-} */
+} 
 
-/* .down-vote-button:hover {
-  background-image: url("images/downvote-hover.svg");
-} */
+.down-vote-button:hover {
+  background-image: url("../images/downvote-hover.svg");
+}
 
 .idea-card h3 {
   color: #6D6E71;

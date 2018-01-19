@@ -1,14 +1,13 @@
 import React from "react";
 
-let Card = (props) => {
-
+let Card = props => {
   return (
     <article id={props.info.id} className="idea-card">
       <div className="card-line-1">
         <h2 className="title" contentEditable="true">
           {props.info.title}
         </h2>
-        <button className="delete-idea-button" />
+        <button onClick="{(e) => props.cardHandeler(e)}" className="delete-idea-button" />
       </div>
       <p className="idea-body" contentEditable="true">
         {props.info.body}
