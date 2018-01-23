@@ -1,5 +1,5 @@
-import React from "react";
-import Card from "./Card.jsx";
+import React from 'react';
+import Card from './Card.jsx';
 
 export default props => {
   return (
@@ -13,7 +13,15 @@ export default props => {
           required="true"
           placeholder="Search"
         />
-        {props.cardArray.map(card => <Card info={card} key={card.id} cardHandeler={props.cardHandeler} />) }
+        {props.cardArray.map(card => (
+          <Card
+            info={card}
+            key={card.id}
+            cardHandeler={props.cardHandeler}
+            remove={props.remove}
+            quality={props.quality}
+          />
+        ))}
       </section>
     </div>
   );

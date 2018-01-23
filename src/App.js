@@ -1,22 +1,21 @@
-import IdeaSection from "./IdeaSection.jsx";
-import React, { Component } from "react";
-import Header from "./Header.jsx";
-import "./css/styles.css";
+import IdeaSection from './IdeaSection.jsx';
+import React, { Component } from 'react';
+import Header from './Header.jsx';
+import './css/styles.css';
 
 export default class App extends Component {
   constructor() {
     super();
     this.state = { cards: [] };
     this.handleClick = this.handleClick.bind(this);
-    this.cardHandeler = this.cardHandeler.bind(this);
   }
 
   handleClick(e) {
     e.preventDefault();
     let cardID = Date.now();
-    let cardTitle = document.querySelector("#title-input").value;
-    let cardBody = document.querySelector("#body-input").value;
-    let cardQuality = "Swill";
+    let cardTitle = document.querySelector('#title-input').value;
+    let cardBody = document.querySelector('#body-input').value;
+    let cardQuality = 'Swill';
     this.setState({
       cards: [
         ...this.state.cards,
@@ -48,66 +47,18 @@ export default class App extends Component {
     localStorage.removeItem(id);
   }
 
-  cardHandeler(e) {
-    var id = $(e.target)
-      .closest("article")
-      .attr("id");
-      console.log(e, 'cardhandler clicked');
-      
-  //   if ($(e.target).hasClass("up-vote-button")) {
-  //     if (
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text() === "Quality: Swill"
-  //     ) {
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text("Quality: Plausible");
-  //       savingQualityModifier(id, "Plausible");
-  //     } else if (
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text() === "Quality: Plausible"
-  //     ) {
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text("Quality: Genius");
-  //       savingQualityModifier(id, "Genius");
-  //     }
-  //   } else if ($(e.target).hasClass("down-vote-button")) {
-  //     if (
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text() === "Quality: Genius"
-  //     ) {
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text("Quality: Plausible");
-  //       savingQualityModifier(id, "Plausible");
-  //     } else if (
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text() === "Quality: Plausible"
-  //     ) {
-  //       $(e.target)
-  //         .siblings("h3")
-  //         .text("Quality: Swill");
-  //       savingQualityModifier(id, "Swill");
-  //     }
-    } if ([e.target].hasClass("delete-idea-button")) {
-      $(e.target)
-        .closest("article")
-        .fadeOut(1000, function() {
-          $(e.target)
-            .closest("article")
-            .remove();
-          removeFromStorage(id);
-        });
-    }
-  }
-
   componentDidMount() {
     //pull from storage if no cards
+  }
+
+  removeCard = id => {
+    let newState = this.state.cards.filter(elem => elem.id !== id);
+    this.setState({cards: newState})
+  };
+
+  quality = id => {
+
+    
   }
 
   render() {
@@ -143,8 +94,11 @@ export default class App extends Component {
           </form>
         </section>
 
-        <IdeaSection cardArray={this.state.cards}
-                    cardHandeler={this.cardHandeler()} 
+        <IdeaSection
+          cardArray={this.state.cards}
+          cardHandeler={this.cardHandeler}
+          remove={this.removeCard}
+          quality={this.quality}
         />
       </div>
     );
